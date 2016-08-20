@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^first_questions/$', views.first_questions, name='first_questions'),
     url(r'^questions/$', views.questions, name='questions'),
     url(r'^answer/$', views.answer, name='answer'),
     url(r'^your_tree/$', views.your_tree, name='your_tree'),

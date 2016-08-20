@@ -8,6 +8,9 @@ from .models import Tree, Message
 def index(request):
     return render(request, 'index.html', {})
 
+def first_questions(request):
+    return render(request, 'first_questions.html', {})
+
 def questions(request):
     return render(request, 'questions.html', {})
 
@@ -19,10 +22,9 @@ def answer(request):
         form = QuestionsForm(data)
         # check whether it's valid:
         if form.is_valid():
-            his_trees = Tree.objects.filter(division='中正區')
+            his_trees = Tree.objects.filter(division=data['division'])
             his_tree = his_trees[random.randint(0, len(his_trees) - 1)]
             return render(request, 'tree.html', {
-                'gender': data['gender'],
                 'tree': his_tree,
             })
 

@@ -1,5 +1,5 @@
 body {
-    background-color: #B1B479;
+    background-color: rgb(220,248,230);
 }
 
 * {
@@ -7,28 +7,28 @@ body {
 }
 
 p {
-	font-size: 16px;
+	font-size: 6px;
 }
 
 .thinking-head {
-	color: #734338;
+	color: rgb(170, 50, 10);;
 	text-align: center;
 	opacity: 0.4;
-	font-size: 80px;
+	font-size: 60px;
 }
 .message-botton {
-	font-size: 1.5em;
-	color: white;
-	border: 2px solid black;
+	font-size: 1.2em;
+	color: rgb(254,223,225);
+	border: 1px solid rgb(75,78,42);
 	border-radius: 5px;
-	background-color: #B1B479;
+	background-color: rgb(80, 140, 100);;
 	display: inline-block;
 	margin: auto;
 	padding: 8px;
 }
 
 .message-botton:hover {
-	color: red;
+	background-color: rgb(0,170,144);
 }
 
 #reload {
@@ -49,9 +49,9 @@ p {
 #type {
 	font-size: 1.5em;
 	color: white;
-	border: 2px solid black;
+	border: 0.8px solid rgb(116,103,62);
 	border-radius: 5px;
-	background-color: #B1B479;
+	background-color: rgb(230,220,200);
 	display: inline-block;
 	margin: auto;
 	padding: 8px;
@@ -72,8 +72,8 @@ p {
 
 #example {
 	/*text-align: center;*/
-	font-size: 50px;
-	color: #B19693;
+	font-size: 25px;
+	color: rgb(100,52,27);
 	position: absolute;
 	left: 50%;
 	top: 35%;
@@ -107,15 +107,13 @@ a:hover {
 }
 
 .tag {
-	font-size: 1.5em;
-	color: white;
+	font-size: 1.2em;
+	color: rgb(86,63,46);
 	border: 2px solid black;
 	border-radius: 5px;
-	background-color: #0066CC;
+	background-color: rgb(180,140,125);
 	display: inline-block;
 	margin: auto;
 	padding: 8px;
 }
 #mapid { height: 180px; }
-
-

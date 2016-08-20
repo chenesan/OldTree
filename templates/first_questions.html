@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.question{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    font-size: 200%;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    width:50%;
+}
+td{
+    border: 1px solid black;
+    height:150px;
+    font-size:300%;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+    color:white;
+}
+td:hover{
+    background-color: #42602D;
+}
+
+
+</style>
+
+</head>
+
+<body style="background-color:rgb(168,216,185)">
+
+<p class="question" id="question_title">1. 選一種蔬菜</p>
+
+<center>
+<table>
+　<tr>
+　<td id="a1" onclick="next()">小黃瓜</td>
+　<td id="a2" onclick="next()">紅椒</td>
+　</tr>
+　<tr>
+　<td id="a3" onclick="next()">山蘇</td>
+　<td id="a4" onclick="next()">高麗菜</td>
+　</tr>
+</table>
+</center>
+
+<script>
+var ques=["1.選一種蔬菜", "2.選一種飲料", "3.選一種戶外活動", "4.選一種香料"];
+var ans1=["小黃瓜", "抹茶","爬山","胡椒"];
+var ans2=["紅椒","香檳","衝浪","丁香"];
+var ans3=["山蘇","咖啡","慢跑","肉桂"];
+var ans4=["高麗菜","汽水","散步","馬告"];
+var i=1;
+
+function next() {
+    if(i<4) {
+        document.getElementById("question_title").innerHTML = ques[i];
+        document.getElementById("a1").innerHTML = ans1[i];
+        document.getElementById("a2").innerHTML = ans2[i];
+        document.getElementById("a3").innerHTML = ans3[i];
+        document.getElementById("a4").innerHTML = ans4[i];
+        i++;}
+    else{
+        window.location.href = "/questions/";
+    }
+}
+
+</script>
+
+</body>
+</html>

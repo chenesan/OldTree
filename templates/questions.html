@@ -1,16 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Old tree!!</title>
+    <meta charset="UTF-8">
+    <style>
+      .question{
+        position: absolute;
+        top: 10%;
+        left: 40%;
+        font-size: 200%;
+      }
+      img{
+        position: absolute;
+        top:25%;
+        left: 35%;
+      }
+    </style>
   </head>
-  <body>
-    <div>你是男生還是女生還是跨性別?</div>
-    <div>
-      <form action="/answer/" method="post">{% csrf_token %}
-        <input type="radio" name="gender" value="male">男<br>
-        <input type="radio" name="gender" value="female">女<br>
-        <input type="radio" name="gender" value="bigender">跨性別<br>
-        <input type="submit">submit
-      </form>
-    </div>
+  <body style="background-color:rgb(168,216,185)">
+    <center>
+    <p class="question" id="question_title">5.想認識哪裡的老樹?</p>
+
+    <form name="myform" method="post" action="/answer/">{% csrf_token %}
+      <input type="hidden" name="division" value="" />
+      <img src={% static 'app/assets/images/taipei.png' %} alt="" usemap="#Map" />
+      <map name="Map" id="Map">
+        <area value="北投區" alt="" title="北投區" href="#" shape="poly" coords="206,28,192,28,193,44,171,56,155,57,150,81,120,78,94,105,93,120,80,121,49,160,50,169,43,172,42,194,66,198,88,192,101,191,109,203,111,213,112,220,133,225,139,217,146,216,153,197,159,193,156,181,168,165,167,146,190,136,198,140,211,107,220,99,224,78,218,71,231,63,232,46,239,38,226,29,229,21,226,8,217,7,205,17" onClick="javascript:submitMyForm(document.myform,'北投區')"/>
+        <area value="士林區" alt="" title="士林區" href="#" shape="poly" coords="304,161,295,156,297,147,284,135,283,124,270,118,274,106,268,84,262,84,256,55,260,34,239,36,232,47,232,64,220,72,225,78,222,98,211,107,198,139,190,136,167,148,169,164,156,181,159,193,153,196,147,216,139,219,134,227,112,223,104,201,100,194,86,193,66,200,43,196,42,207,58,222,79,221,97,227,112,240,157,269,157,251,163,253,183,235,195,238,212,234,219,220,226,222,247,205,261,207,267,193,284,190" onClick="javascript:submitMyForm(document.myform,'士林區')"/>
+        <area value="大同區" alt="" title="大同區" href="#" shape="poly" coords="113,242,106,315,116,313,126,319,149,317,150,287,153,267" onClick="javascript:submitMyForm(document.myform,'大同區')"/>
+        <area value="中山區" alt="" title="中山區" href="#" shape="poly" coords="150,319,173,323,192,323,192,264,209,264,206,254,218,252,217,238,210,234,196,240,185,238,165,253,158,254,160,271,154,270,150,289" onClick="javascript:submitMyForm(document.myform,'中山區')"/>
+        <area value="松山區" alt="" title="松山區" href="#" shape="poly" coords="217,327,237,315,255,314,254,309,245,307,244,305,263,283,242,288,241,265,225,270,224,248,220,248,219,254,206,251,212,263,193,266,194,323" onClick="javascript:submitMyForm(document.myform,'松山區')"/>
+        <area value="內湖區" alt="" title="內湖區" href="#" shape="poly" coords="266,308,276,298,276,290,282,290,284,297,312,293,311,283,321,283,340,247,341,237,334,232,335,217,326,217,318,206,286,191,269,194,261,210,248,208,228,222,215,231,218,247,227,244,226,267,242,261,244,286,266,279,246,305" onClick="javascript:submitMyForm(document.myform,'內湖區')"/>
+        <area value="萬華區" alt="" title="萬華區" href="#" shape="poly" coords="76,328,77,369,97,395,115,387,129,372,131,363,116,353,127,321,115,316" onClick="javascript:submitMyForm(document.myform,'萬華區')"/>
+        <area value="中正區" alt="" title="中正區" href="#" shape="poly" coords="131,372,146,374,167,394,181,389,152,362,158,346,174,344,172,325,151,321,129,321,119,352"onClick="javascript:submitMyForm(document.myform,'中正區')"/>
+        <area value="大安區" alt="" title="大安區" href="#" shape="poly" coords="184,387,184,396,199,396,203,393,210,391,210,387,225,396,232,393,211,362,219,355,217,330,194,325,174,325,175,346,160,348,156,360" onClick="javascript:submitMyForm(document.myform,'大安區')"/>
+        <area value="信義區" alt="" title="信義區" href="#" shape="poly" coords="232,390,246,381,253,382,275,348,269,342,269,333,255,325,254,317,239,316,220,330,221,355,213,363" onClick="javascript:submitMyForm(document.myform,'信義區')"/>
+        <area value="南港區" alt="" title="南港區" href="#" shape="poly" coords="255,380,260,387,295,383,305,372,342,373,348,364,370,364,374,369,382,364,407,364,407,353,397,348,391,354,372,355,329,332,322,319,326,307,340,307,322,286,313,286,305,298,283,300,280,293,268,308,257,309,259,322,270,330,272,340,278,346" onClick="javascript:submitMyForm(document.myform,'南港區')"/>
+        <area value="文山區" alt="" title="文山區" href="#" shape="poly" coords="168,396,174,408,165,414,173,422,173,416,183,419,184,432,192,435,189,441,199,446,202,437,210,440,210,449,224,476,244,480,253,474,276,481,282,478,288,489,330,473,314,454,296,454,295,440,304,435,293,420,295,406,286,396,287,385,258,388,254,384,226,398,212,390,199,398,183,399,183,390" onClick="javascript:submitMyForm(document.myform,'文山區')"/>
+    </map>
+    </center>
+
+    </form>
+
+    <script>
+      function submitMyForm(aForm, val) {
+         aForm.division.value = val;
+         aForm.submit()
+      }
+    </script>
   </body>
-</html>
