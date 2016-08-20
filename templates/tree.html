@@ -5,105 +5,118 @@
 	<body style="background-color:rgb(250,230,200)">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<title>
-		tree
-		</title>
+		<title>這是屬於你的老樹</title>
 		<style>
-
+		body {
+			width: 100%;
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: visible;
+		}
+		.container {
+			width: 100%;
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: visible;
+		}
+		.head {
+			width: 100%;
+			height: 30%;
+			margin: 10vh 0 0 10vw;
+		}
+		.tree-show {
+			width: 100%;
+		}
 		h1{
-			position: absolute;
-	    	left: 15%;
-    		top: 8%;
-    		width: 100%;
-    		font-size: 40px;
+    	width: 100%;
+    	font-size: 5vh;
 		}
 		.treename{
-			position: absolute;
-	    	left: 30%;
-    		top: 8%;
-    		width: 100%;
-    		font-size: 40px;
-
+    	width: 100%;
 		}
 		.address{
-			position: absolute;
-	    	left: 15%;
-    		top: 17%;
-    		width: 100%;
-    		font-size: 20px;
+    	width: 100%;
+    	font-size: 3vh;
 		}
 		.year{
-			position: absolute;
-	    	left: 15%;
-    		top: 20%;
-    		width: 100%;
-    		font-size: 22px;
+    	width: 100%;
+    	font-size: 3.2vh;
 		}
 		.suy{
-			position: absolute;
-	    	left: 18%;
-    		top: 20%;
-    		width: 100%;
-    		font-size: 20px;
+    	width: 100%;
+    	font-size: 3vh;
 		}
 		.tree{
-			position: absolute;
-			left: 50%;
-			top: 30%;
-			transform: translate(-50%, 0%)
+			margin: 0 0 0 50%;
+			transform: translate(-50%, 0);
 		}
 		.background1{
 			position: absolute;
 			left: 0%;
 			top: 25%;
-			transform: translate(-40%, 0%)
+			transform: translate(-50%, 0%)
 		}
 		.background2{
 			position: absolute;
-			left: 80%;
-			top: 0;
-			transform: translate(-30%, -30%);
+			top: -20%;
+			left: 700px;
 		}
 		.literature{
-			position: absolute;
-	    	left: 0;
-	    	top: 75%;
 	    	width: 100%;
 	    	text-align: center;
 	    	font-size: 20px;
 		}
-		a{
-			position: absolute;
-			left:80%;
-			top:85%;
-    		color:green;
-    		text-decoration:none;
-    		font-size:24px;
-    		}
-    	a:hover{
-    		color:rgb(80,200,144);
-    		}
+		.footer {
+			text-align: center;
+		}
+		.water {
+    	color:green;
+    	text-decoration:none;
+    	font-size:24px;
+    }
+    .water:hover{
+    	color:rgb(80,200,144);
+    }
 		</style>
 	</head>
 
 	<body>
+		<div class="container">
+			<img src="{{treeUrl}}/treeBG.png" width="1000" height="750" class="background1">
+			<img src="{{treeUrl}}/treeBG.png" width="1000" height="750" class="background2">
+			<header class="head">
+				<h1 class="treename">屬於你的 {{ tree.type }}樹</h1>
+				<p class="address">{{ tree.division }}</p>
+				{% if tree.age != -1 %}
+				<p class="year">
+					{{ tree.age }} <span class="suy">歲</span>
+				</p>
+				{% else %}
+				{% endif %}
+			</header>
+			<div class="tree-show">
+				<img src="{{treeUrl}}/{{tree.id}}.jpg" class="tree" id="tree">
+				<p class="literature">炎熱的夏天午後，一起喝杯茶吧。</p>
+			</div>
+			<footer class="footer">
+				<a href="/message/" class="water">～去澆水～</a>
+			</footer>
 
-		<h1>屬於你的</h1>
-		<h1 class=treename>{{ tree.type }}樹</h1>
-		<p class=address>{{ tree.division }}</p>
-		{% if tree.age != -1 %}
-		<p class=year>
-			{{ tree.age }}
-		</p>
-		<p class=suy>歲</p>
-		{% else %}
-		{% endif %}
-		<img src="{{treeUrl}}/{{tree.id}}.jpg" width="500" height="375" class=tree>
-		<img src="{{treeUrl}}/treeBG.png" width="1000" height="750" class=background1>
-		<img src="{{treeUrl}}/treeBG.png" width="1800" height="1200" class=background2>
-		<p class=literature>炎熱的夏天午後，一起喝杯茶吧。</p>
-		<a href="/message/">～去澆水～</a>
-
+		</div>
 	</body>
 
+	<script>
+
+		var treeImg = document.getElementById('tree');
+		treeImg.onload = function() {
+			var height = treeImg.height;
+			var width = treeImg.width;
+			if (width >= 800) {
+				console.log('too large')
+				treeImg.width = treeImg.width / 2;
+				treeImg.height = treeImg.height / 2;
+			}
+		}
+
+	</script>
 </html>
