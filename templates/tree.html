@@ -1,4 +1,5 @@
 {% load static %}
+{% static 'app/assets/images/trees' as treeUrl%}
 <!DOCTYPE HTML>
 <html>
 	<body style="background-color:rgb(250,230,200)">
@@ -97,13 +98,9 @@
 		<p class=suy>歲</p>
 		{% else %}
 		{% endif %}
-		<img src="IMG_4263.JPG" width="500" height="375" class=tree>
-		<img src={% with 'app/assets/images/trees/tree_'|add:tree.id|add:'.jpg' as image_static %}
-  	{% static image_static %}
-		{% endwith %}width="1000" height="750" class=background1>
-		<img src={% with 'app/assets/images/trees/tree_'|add:tree.id|add:'.jpg' as image_static %}
-  	{% static image_static %}
-		{% endwith %} width="1800" height="1200" class=background2>
+		<img src="{{treeUrl}}/{{tree.id}}.jpg" width="500" height="375" class=tree>
+		<img src="{{treeUrl}}/treeBG.png" width="1000" height="750" class=background1>
+		<img src="{{treeUrl}}/treeBG.png" width="1800" height="1200" class=background2>
 		<p class=literature>炎熱的夏天午後，一起喝杯茶吧。</p>
 		<a href="/message/">～去澆水～</a>
 

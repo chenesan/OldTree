@@ -1,23 +1,22 @@
 {% load static %}
-<head>
-  <meta charset="UTF-8">
-  <title>Mind</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
-</head>
-<body>
-  <div class="container">
-    <div class="cyourt
-                ontent">
-      <h1 class="thinking-head">留個言給你的老樹友吧</h1>
-    </div>
-    <div id="input-area">
-      <p id="example">我輕輕地來，又輕輕地走 ˊ_>ˋ</p>
-      <input type="text" name="msg" id="type" size="60">
-    </div>
-  </div>
-
-
-  <!-- <img src="./pen.png" style="float:center;width:40px;height:40px;"> -->
-
-  <script src={% static 'app/js/message.js'%}></script>
-</body>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href={% static 'app/css/message.css' %}/>
+    <meta charset="UTF-8">
+    <title>澆澆水吧!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="cyourtontent">
+        <h1 class="thinking-head">留個言給你的老樹友吧</h1>
+      </div>
+      <div id="input-area">
+        <p id="example"></p>
+        <input type="text" name="msg" id="type" size="80" placeholder="在這裡輸入屬於你的留言吧！">
+      </div>
+      <button class="message-botton" id="reload" onclick="myFunction()">重新生成</button>
+      <button class="message-botton" id="output" onclick="myFunction()">確定留言</button>
+    <script src={% static 'app/js/message.js'%}></script>
+  </body>
+</html>
