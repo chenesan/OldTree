@@ -21,7 +21,7 @@ def answer(request):
         if form.is_valid():
             his_trees = Tree.objects.filter(division='中正區')
             his_tree = his_trees[random.randint(0, len(his_trees) - 1)]
-            return render(request, 'your_tree.html', {
+            return render(request, 'tree.html', {
                 'gender': data['gender'],
                 'tree': his_tree,
             })
@@ -32,7 +32,7 @@ def answer(request):
     return render(request, 'questions.html', {'form': form})
 
 def your_tree(request):
-    return render(request, 'your_tree.html', )
+    return render(request, 'tree.html', )
 
 def message(request):
     return render(request, 'message.html', {
