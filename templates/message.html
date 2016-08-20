@@ -1,13 +1,23 @@
-<html>
-  <head>
-
-  </head>
-  <body>
-    <div>
-      {% for message in messages %}
-      <div>{{message.content}}</div>
-      {% empty %}
-      {% endfor %}
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>Mind</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="cyourt
+                ontent">
+      <h1 class="thinking-head">留個言給你的老樹友吧</h1>
     </div>
-  </body>
-</html>
+    <div id="input-area">
+      <p id="example">我輕輕地來，又輕輕地走 ˊ_>ˋ</p>
+      <input type="text" name="msg" id="type" size="60">
+    </div>
+  </div>
+
+
+  <!-- <img src="./pen.png" style="float:center;width:40px;height:40px;"> -->
+
+  <script src={% static 'app/js/message.js'%}></script>
+</body>

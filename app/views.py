@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import random
 from django.shortcuts import render, redirect
-from .forms import QuestionsForm
+from django.http import JsonResponse
+from .forms import MessageForm, QuestionsForm
 from .models import Tree, Message
 
 def index(request):
@@ -37,3 +38,12 @@ def message(request):
     return render(request, 'message.html', {
         'messages': Message.objects.all()
     })
+
+def send_message(request):
+    if request.POST:
+        data = request.POST
+        form = MessageForm(data)
+        if form.is_valid():
+            Message.objects.create(content=data['content'])
+            return JsonResponse({})
+    return JsonResponse({})
