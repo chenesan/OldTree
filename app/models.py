@@ -13,3 +13,6 @@ class Tree(models.Model):
     division = models.CharField(max_length=20) #treea_addr['admin_division_name']
     address = models.CharField(max_length=200) #treea_addr['detail_treea_addr']
     id = models.IntegerField(primary_key=True) #treea_addr['old_tree_serial_no']
+
+class Message(models.Model):
+    content = models.TextField()

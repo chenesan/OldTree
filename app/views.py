@@ -1,10 +1,13 @@
+# -*- coding: utf-8 -*-
+import random
 from django.shortcuts import render, redirect
 from .forms import QuestionsForm
+from .models import Tree, Message
 
 def index(request):
     return render(request, 'index.html', {})
 
-def start(request):
+def questions(request):
     return render(request, 'questions.html', {})
 
 def answer(request):
@@ -15,15 +18,22 @@ def answer(request):
         form = QuestionsForm(data)
         # check whether it's valid:
         if form.is_valid():
+            his_trees = Tree.objects.filter(division='中正區')
+            his_tree = his_trees[random.randint(0, len(his_trees) - 1)]
             return render(request, 'your_tree.html', {
                 'gender': data['gender'],
+                'tree': his_tree,
             })
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = QuestionsForm()
-
     return render(request, 'questions.html', {'form': form})
 
 def your_tree(request):
     return render(request, 'your_tree.html', )
+
+def message(request):
+    return render(request, 'message.html', {
+        'messages': Message.objects.all()
+    })

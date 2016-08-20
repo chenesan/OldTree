@@ -1,0 +1,13 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div>
+      {% for message in messages %}
+      <div>{{message.content}}</div>
+      {% empty %}
+      {% endfor %}
+    </div>
+  </body>
+</html>
