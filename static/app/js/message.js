@@ -13,7 +13,7 @@ var defaultMessages = [
 
 var msg = document.getElementById("type");
 var client = document.getElementById("example");
-client.innerHTML = defaultMessages[Math.floor((Math.random()*9))];
+//client.innerHTML = defaultMessages[Math.floor((Math.random()*9))];
 
 function sendxhr(value) {
   var xhttp = new XMLHttpRequest();
@@ -25,13 +25,42 @@ function sendxhr(value) {
 }
 
 msg.addEventListener("keypress", function(event){
+  console.log(event)
     if(event.keyCode == 13){
-        client.innerHTML = msg.value;
+        //client.innerHTML = msg.value;
         sendxhr(msg.value)
+        appendMessage(msg.value)
         msg.value = "";
     }
 })
 
-function myFunction() {
-    location.reload();
+function appendMessage(message) {
+  var oldMessage = document.createElement('div');
+  oldMessage.innerHTML = message;
+  oldMessage.className = 'old-message';
+  oldMessage = addOldMessageStyle(oldMessage);
+  document.querySelector('.old-messages').appendChild(oldMessage);
+}
+
+function setRandomText() {
+  // document.getElementById('type').value = defaultMessages[Math.floor((Math.random()*9))];
+  appendMessage(defaultMessages[Math.floor((Math.random()*9))]);
+}
+
+function addOldMessageStyle(element) {
+  var top = String(Math.abs(Math.random()*100 - 40))+"%";
+  var left = String(Math.abs(Math.random()*100 - 40))+"%";
+  element.style.top = top;
+  element.style.left = left;
+  element.style.animation = 'movingbox ' + (5 * Math.random() + 2).toString() +
+  's ' + (2 * Math.random()).toString() +'s infinite alternate';
+  return element;
+}
+
+window.onload = function() {
+  var oldMessageArray = document.querySelectorAll('.old-message');
+  for (var i = 0; i < oldMessageArray.length; i++) {
+    var oldMessage = oldMessageArray[i];
+    addOldMessageStyle(oldMessage);
+  }
 }

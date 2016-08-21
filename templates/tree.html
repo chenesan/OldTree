@@ -6,6 +6,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<title>這是屬於你的老樹</title>
+		<link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+		<script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+		<script src={% static 'app/js/geolib.js' %}></script>
 		<style>
 		body {
 			width: 100%;
@@ -68,6 +71,7 @@
 		}
 		.footer {
 			text-align: center;
+			margin: 0 0 20px 0;
 		}
 		.water {
     	color:green;
@@ -77,6 +81,13 @@
     .water:hover{
     	color:rgb(80,200,144);
     }
+		#map {
+			margin: 0 20% 0 20%;
+			height: 300px;
+		}
+		.distance-text {
+			font-size: 24px;
+		}
 		</style>
 	</head>
 
@@ -86,7 +97,7 @@
 			<img src="{{treeUrl}}/treeBG.png" width="1000" height="750" class="background2">
 			<header class="head">
 				<h1 class="treename">屬於你的 {{ tree.type }}樹</h1>
-				<p class="address">{{ tree.division }}</p>
+				<p class="address">{{ tree.address }}</p>
 				{% if tree.age != -1 %}
 				<p class="year">
 					{{ tree.age }} <span class="suy">歲</span>
@@ -94,6 +105,9 @@
 				{% else %}
 				<p class="year">生年不詳</p>
 				{% endif %}
+
+				<p class="distance-text">距離你<span id="distance">   </span>公尺</p>
+
 			</header>
 			<div class="tree-show">
 				<img src="{{treeUrl}}/{{tree.id}}.jpg" class="tree" id="tree">
@@ -102,6 +116,8 @@
 			<footer class="footer">
 				<a href="/message/" class="water">～去澆水～</a>
 			</footer>
+			<div id="map"></div>
+
 
 		</div>
 	</body>
@@ -113,11 +129,35 @@
 			var height = treeImg.height;
 			var width = treeImg.width;
 			if (width >= 800) {
-				console.log('too large')
 				treeImg.width = treeImg.width / 2;
 				treeImg.height = treeImg.height / 2;
 			}
 		}
 
+		//leaflet
+		var map = L.map('map').setView([{{tree.latitude}}, {{tree.longtitude}}], 16);
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		L.marker([{{tree.latitude}}, {{tree.longtitude}}]).addTo(map)
+    .bindPopup('{{tree.type}}' + '樹, ' + '{{tree.address}}')
+    .openPopup();
+
+		navigator.geolocation.getCurrentPosition(function(position){
+			var manPos = {
+				'latitude': position.coords.latitude,
+				'longitude': position.coords.longitude,
+			};
+			console.log(manPos)
+			var treePos = {
+				'latitude': {{tree.latitude}},
+				'longitude': {{tree.longtitude}},
+			};
+			console.log(treePos)
+			var dist = geolib.getDistance(manPos, treePos);
+			document.getElementById('distance').innerHTML = dist;
+		}, function(){}, {enableHighAccuracy: true});
 	</script>
 </html>

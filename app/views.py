@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import random
+import time
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .forms import MessageForm, QuestionsForm
@@ -37,8 +38,12 @@ def your_tree(request):
     return render(request, 'tree.html', )
 
 def message(request):
+    start = random.randint(0, Message.objects.count() - 2)
     return render(request, 'message.html', {
-        'messages': Message.objects.all()
+        'messages': Message.objects.filter(
+            id__gte=start,
+            id__lte=start + 2,
+        )
     })
 
 def send_message(request):

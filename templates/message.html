@@ -8,15 +8,21 @@
   </head>
   <body>
     <div class="container">
+      <div class="old-messages">
+        {% for message in messages %}
+        <div class="old-message">{{message.content}}</div>
+        {% empty %}
+        {% endfor %}
+      </div>
       <div class="cyourtontent">
         <h1 class="thinking-head">留個言給你的老樹友吧</h1>
       </div>
       <div id="input-area">
-        <p id="example"></p>
+        <!-- <p id="example"></p> -->
         <input type="text" name="msg" id="type" size="80" placeholder="在這裡輸入屬於你的留言吧！">
       </div>
-      <button class="message-botton" id="reload" onclick="myFunction()">重新生成</button>
-      <button class="message-botton" id="output" onclick="myFunction()">確定留言</button>
+      <button class="message-botton" id="reload" onclick="setRandomText()">隨機生成</button>
+      <!--<button class="message-botton" id="output" onclick="setRandomText()">確定留言</button> -->
     <script src={% static 'app/js/message.js'%}></script>
   </body>
 </html>
